@@ -214,8 +214,8 @@
 
         button.icon-btn {
             padding: 0.25rem;
-            height: 24px;
-            width: 24px;
+            height: 32px;
+            width: 32px;
             border-radius: 50%;
             border: none;
             box-shadow: none;
@@ -243,8 +243,8 @@
         }
 
         button.dashboard-icon-btn {
-            height: 32px;
-            width: 32px;
+            height: 40px;
+            width: 40px;
             padding: 0;
             border-radius: 999px;
             border: 1px solid var(--border);
@@ -370,6 +370,12 @@
             border-color: var(--primary);
         }
 
+        .card:focus-visible {
+            outline: 3px solid rgba(79, 70, 229, 0.35);
+            outline-offset: 3px;
+            border-color: var(--primary);
+        }
+
         .color-strip {
             height: 6px;
             width: 100%;
@@ -428,12 +434,21 @@
         }
 
         .calendar-warnings {
-            background: rgba(207, 102, 121, 0.2);
-            border: 1px solid var(--danger);
-            color: #ffcccc;
+            background: #fff7ed;
+            border: 1px solid #fdba74;
+            color: #7c2d12;
             padding: 1rem;
-            border-radius: 4px;
+            border-radius: 8px;
             margin-bottom: 1rem;
+        }
+
+        .calendar-warning-list {
+            margin: 0;
+            padding-left: 1rem;
+        }
+
+        .calendar-warning-list li+li {
+            margin-top: 0.35rem;
         }
 
         .month-grid {
@@ -600,6 +615,70 @@
             pointer-events: auto;
         }
 
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .focus-ring:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        select:focus-visible,
+        textarea:focus-visible,
+        iframe:focus-visible {
+            outline: 3px solid rgba(79, 70, 229, 0.35);
+            outline-offset: 2px;
+        }
+
+        .dashboard-toolbar {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.9rem;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-action-group {
+            display: flex;
+            gap: 0.35rem;
+            align-items: center;
+        }
+
+        .secondary-action {
+            background: transparent;
+            border-color: var(--border);
+            color: var(--text-muted);
+        }
+
+        .help-frame-wrap {
+            flex: 1;
+            padding: 1rem 2rem 2rem;
+            overflow: hidden;
+        }
+
+        .help-frame {
+            width: 100%;
+            height: 100%;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: white;
+            box-shadow: var(--shadow);
+        }
+
         .modal-box {
             background: var(--bg-card);
             padding: 2rem;
@@ -646,22 +725,27 @@
     <!-- Header Removed by User Request -->
 
     <main>
+        <div id="app-status" class="sr-only" role="status" aria-live="polite"></div>
         <!-- DASHBOARD VIEW -->
         <div id="view-dashboard" class="view-container">
             <div class="flex justify-between items-center">
                 <div class="dashboard-title-row">
                     <h2 data-i18n="dashboard.title">Mis Asignaturas</h2>
                     <div class="dashboard-title-actions">
-                        <button class="dashboard-icon-btn" onclick="app.importSubject()" data-i18n-vals="title:dashboard.import;aria-label:dashboard.import">↑</button>
+                        <button class="dashboard-icon-btn focus-ring" onclick="app.importSubject()" data-i18n-vals="title:dashboard.import;aria-label:dashboard.import">↑</button>
                         <input type="file" id="file-import" class="hidden" accept=".json"
                             onchange="app.handleFileSelect(this)">
-                        <button class="dashboard-icon-btn primary" onclick="app.createSubject()" data-i18n-vals="title:dashboard.new;aria-label:dashboard.new">+</button>
+                        <input type="file" id="file-import-all" class="hidden" accept=".json"
+                            onchange="app.handleAllFileSelect(this)">
+                        <button class="dashboard-icon-btn focus-ring" onclick="app.importAllSubjects()" data-i18n-vals="title:dashboard.import_all;aria-label:dashboard.import_all">⇡</button>
+                        <button class="dashboard-icon-btn focus-ring" onclick="app.exportAllSubjects()" data-i18n-vals="title:dashboard.export_all;aria-label:dashboard.export_all">⇣</button>
+                        <button class="dashboard-icon-btn primary focus-ring" onclick="app.createSubject()" data-i18n-vals="title:dashboard.new;aria-label:dashboard.new">+</button>
                     </div>
                 </div>
-                <div class="flex gap-2 items-center">
+                <div class="dashboard-toolbar">
                     <div id="lang-selector-container"></div>
-                    <button onclick="app.openHelp()" data-i18n="dashboard.help">Ayuda</button>
-                    <button id="btn-install-dashboard" class="primary" onclick="app.installApp()"
+                    <button class="focus-ring" onclick="app.openHelp('dashboard')" data-i18n="dashboard.help">Ayuda</button>
+                    <button id="btn-install-dashboard" class="primary focus-ring" onclick="app.installApp()"
                         data-i18n="dashboard.install">Instalar App</button>
                 </div>
             </div>
@@ -677,18 +761,15 @@
         <div id="view-detail" class="view-container hidden">
             <div class="detail-header">
                 <div class="flex items-center gap-4">
-                    <button onclick="app.navigateTo('dashboard')" data-i18n="detail.back">← Volver</button>
+                    <button class="focus-ring" onclick="app.navigateTo('dashboard')" data-i18n="detail.back">← Volver</button>
                     <h2 id="detail-subject-name">Matemáticas</h2>
                 </div>
                 <div class="flex gap-2">
-                    <button onclick="app.openHelp()" data-i18n="detail.help">Ayuda</button>
-                    <button id="btn-install-detail" class="primary" onclick="app.installApp()"
-                        data-i18n="detail.install">Instalar App</button>
-                    <button onclick="app.printSummary()" data-i18n="detail.summary">🖨️ Resumen</button>
-                    <button id="btn-holiday-mode" onclick="app.toggleHolidayMode()" data-i18n="detail.holidays_edit">✏️
+                    <button class="focus-ring" onclick="app.printSummary()" data-i18n="detail.summary">🖨️ Resumen</button>
+                    <button id="btn-holiday-mode" class="focus-ring" onclick="app.toggleHolidayMode()" data-i18n="detail.holidays_edit">✏️
                         Festivos</button>
-                    <button onclick="app.exportHolidays()" data-i18n="detail.holidays_export">⬇️ Festivos</button>
-                    <button onclick="app.importHolidays()" data-i18n="detail.holidays_import">⬆️ Festivos</button>
+                    <button class="focus-ring" onclick="app.exportHolidays()" data-i18n="detail.holidays_export">⬇️ Festivos</button>
+                    <button class="focus-ring" onclick="app.importHolidays()" data-i18n="detail.holidays_import">⬆️ Festivos</button>
                     <input type="file" id="import-holidays-file" class="hidden" accept=".json"
                         onchange="app.handleHolidayImport(this)">
                 </div>
@@ -783,16 +864,30 @@
                 </div>
             </div>
         </div>
+        <div id="view-help" class="view-container hidden">
+            <div class="detail-header">
+                <div class="flex items-center gap-4">
+                    <button class="focus-ring" onclick="app.closeHelp()" data-i18n="help.back">← Volver</button>
+                    <h2 data-i18n="help.title">Ayuda</h2>
+                </div>
+                <div class="flex gap-2">
+                    <button class="focus-ring" onclick="app.openHelpExternal()" data-i18n="help.open_new">Abrir en nueva pestaña</button>
+                </div>
+            </div>
+            <div class="help-frame-wrap">
+                <iframe id="help-frame" class="help-frame" title="Help content"></iframe>
+            </div>
+        </div>
     </main>
 
     <!-- MODAL OVERLAY -->
-    <div id="modal-overlay" class="modal-overlay">
+    <div id="modal-overlay" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-msg">
         <div class="modal-box">
-            <h3 id="modal-title" class="modal-title">Título</h3>
+            <h3 id="modal-title" class="modal-title" tabindex="-1">Título</h3>
             <p id="modal-msg" class="modal-msg">Mensaje...</p>
             <div class="modal-actions">
-                <button id="modal-cancel" data-i18n="modal.cancel">Cancelar</button>
-                <button id="modal-confirm" class="primary" data-i18n="modal.confirm">Confirmar</button>
+                <button id="modal-cancel" class="focus-ring" data-i18n="modal.cancel">Cancelar</button>
+                <button id="modal-confirm" class="primary focus-ring" data-i18n="modal.confirm">Confirmar</button>
             </div>
         </div>
     </div>
@@ -808,9 +903,12 @@
             data: {
                 subjects: []
             },
+            currentView: 'dashboard',
             currentSubjectId: null,
             holidayMode: false,
-            deferredInstallPrompt: null
+            deferredInstallPrompt: null,
+            helpReturnView: 'dashboard',
+            isInstalled: window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true
         };
 
         const Utils = {
@@ -850,7 +948,7 @@
                 m.innerText = msg;
                 ol.classList.add('open');
 
-                bYes.innerText = isConfirm ? 'Confirmar' : 'Aceptar';
+                bYes.innerText = isConfirm ? I18n.t('modal.confirm') : I18n.t('modal.accept');
                 bNo.style.display = isConfirm ? 'inline-flex' : 'none';
 
                 // Reset Listeners
@@ -861,9 +959,18 @@
 
                 nYes.onclick = () => { ol.classList.remove('open'); if (onYes) onYes(); };
                 nNo.onclick = () => { ol.classList.remove('open'); if (onNo) onNo(); };
+                t.focus();
             },
             showAlert: (title, msg) => app.showModal(title, msg, false),
             showConfirm: (title, msg, onYes, onNo) => app.showModal(title, msg, true, onYes, onNo),
+            announceStatus: (message) => {
+                const status = document.getElementById('app-status');
+                if (!status) return;
+                status.textContent = '';
+                setTimeout(() => {
+                    status.textContent = message;
+                }, 10);
+            },
 
 
             init: () => {
@@ -886,7 +993,15 @@
 
                 window.addEventListener('appinstalled', () => {
                     AppState.deferredInstallPrompt = null;
+                    AppState.isInstalled = true;
                     app.updateInstallButtons();
+                    app.announceStatus(I18n.t('modal.install_installed_msg'));
+                });
+
+                document.addEventListener('keydown', event => {
+                    if (event.key === 'Escape') {
+                        document.getElementById('modal-overlay').classList.remove('open');
+                    }
                 });
             },
 
@@ -895,7 +1010,16 @@
                     const button = document.getElementById(buttonId);
                     if (!button) return;
                     button.classList.remove('hidden');
-                    button.style.opacity = AppState.deferredInstallPrompt ? '1' : '0.85';
+                    button.style.opacity = '1';
+                    if (AppState.isInstalled) {
+                        button.textContent = I18n.t('dashboard.install_installed');
+                        button.disabled = true;
+                        return;
+                    }
+                    button.disabled = false;
+                    const ready = !!AppState.deferredInstallPrompt;
+                    button.textContent = ready ? I18n.t('dashboard.install_ready') : I18n.t('dashboard.install');
+                    button.title = ready ? I18n.t('modal.install_ready_msg') : I18n.t('modal.install_unavailable_msg');
                 });
             },
 
@@ -911,11 +1035,25 @@
                 localStorage.setItem('planificador_data', JSON.stringify(AppState.data));
             },
 
-            openHelp: () => {
+            openHelp: (returnView = AppState.currentView) => {
+                AppState.helpReturnView = returnView;
+                const frame = document.getElementById('help-frame');
+                if (frame) {
+                    frame.src = `help.html?lang=${encodeURIComponent(I18n.currentLang)}`;
+                }
+                app.navigateTo('help');
+            },
+
+            closeHelp: () => {
+                app.navigateTo(AppState.helpReturnView || 'dashboard');
+            },
+
+            openHelpExternal: () => {
                 window.open(`help.html?lang=${encodeURIComponent(I18n.currentLang)}`, '_blank');
             },
 
             installApp: async () => {
+                if (AppState.isInstalled) return;
                 if (!AppState.deferredInstallPrompt) {
                     app.showAlert(
                         I18n.t('modal.install_unavailable_title'),
@@ -939,6 +1077,7 @@
             navigateTo: (view) => {
                 document.querySelectorAll('.view-container').forEach(el => el.classList.add('hidden'));
                 document.getElementById(`view-${view}`).classList.remove('hidden');
+                AppState.currentView = view;
 
                 if (view === 'dashboard') {
                     app.renderDashboard();
@@ -955,16 +1094,56 @@
                 AppState.data.subjects.forEach(sub => {
                     const card = document.createElement('div');
                     card.className = 'card';
+                    card.tabIndex = 0;
+                    card.setAttribute('role', 'button');
+                    card.setAttribute('aria-label', `${sub.name}. ${I18n.t('dashboard.units')}: ${sub.units.length}`);
                     card.innerHTML = `
                         <div class="color-strip" style="background: ${sub.color}"></div>
                         <h3 class="text-xl mb-2">${sub.name}</h3>
                         <p class="text-muted text-sm">${sub.units.length} ${I18n.t('dashboard.units')}</p>
                         <p class="text-muted text-sm">${I18n.t('dashboard.start')}: ${sub.startDate}</p>
-                        <button class="text-xs mt-2" onclick="event.stopPropagation(); app.exportSubject('${sub.id}')">${I18n.t('dashboard.export_json')}</button>
+                        <div class="card-actions">
+                            <button class="text-xs focus-ring" onclick="event.stopPropagation(); app.exportSubject('${sub.id}')">${I18n.t('dashboard.export_json')}</button>
+                            <div class="card-action-group">
+                                <button class="dashboard-icon-btn focus-ring" title="${I18n.t('dashboard.duplicate')}" aria-label="${I18n.t('dashboard.duplicate')}" onclick="event.stopPropagation(); app.duplicateSubject('${sub.id}')">⧉</button>
+                                <button class="dashboard-icon-btn focus-ring" title="${I18n.t('detail.pdf')}" aria-label="${I18n.t('detail.pdf')}" onclick="event.stopPropagation(); app.exportPdfSummary('${sub.id}')">PDF</button>
+                            </div>
+                        </div>
                     `;
                     card.onclick = () => app.openSubject(sub.id);
+                    card.onkeydown = event => {
+                        if (event.key === 'Enter' || event.key === ' ') {
+                            event.preventDefault();
+                            app.openSubject(sub.id);
+                        }
+                    };
                     container.appendChild(card);
                 });
+            },
+
+            getUniqueSubjectName: (baseName) => {
+                let newName = baseName;
+                let counter = 1;
+                while (AppState.data.subjects.some(s => s.name === newName)) {
+                    newName = `${baseName} (${I18n.t('dashboard.copy_suffix')} ${counter})`;
+                    counter++;
+                }
+                return newName;
+            },
+
+            cloneSubjectData: (subject, overrideName) => {
+                const clone = JSON.parse(JSON.stringify(subject));
+                clone.id = Utils.uuid();
+                clone.name = overrideName || app.getUniqueSubjectName(subject.name);
+                clone.units = (clone.units || []).map(unit => ({
+                    ...unit,
+                    id: Utils.uuid(),
+                    activities: (unit.activities || []).map(activity => ({
+                        ...activity,
+                        id: Utils.uuid()
+                    }))
+                }));
+                return clone;
             },
 
             exportSubject: (id) => {
@@ -977,6 +1156,64 @@
                 nav.href = url;
                 nav.download = `${sub.name.replace(/[^a-z0-9]/gi, '_').toLowerCase()}_planner.json`;
                 nav.click();
+            },
+
+            exportAllSubjects: () => {
+                const payload = {
+                    version: 1,
+                    exportedAt: new Date().toISOString(),
+                    subjects: AppState.data.subjects
+                };
+                const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+                const url = URL.createObjectURL(blob);
+                const nav = document.createElement('a');
+                nav.href = url;
+                nav.download = 'coursemap_subjects_backup.json';
+                nav.click();
+                app.announceStatus(I18n.t('dashboard.export_all_done'));
+            },
+
+            importAllSubjects: () => {
+                document.getElementById('file-import-all').click();
+            },
+
+            handleAllFileSelect: (input) => {
+                const file = input.files[0];
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    try {
+                        const json = JSON.parse(e.target.result);
+                        const subjects = Array.isArray(json) ? json : json.subjects;
+                        if (!Array.isArray(subjects)) {
+                            app.showAlert(I18n.t('modal.import_error'), I18n.t('modal.import_all_invalid'));
+                            return;
+                        }
+                        subjects.forEach(subject => {
+                            const normalized = app.normalizeImportedSubject(subject);
+                            if (normalized) {
+                                AppState.data.subjects.push(normalized);
+                            }
+                        });
+                        app.saveToStorage();
+                        app.renderDashboard();
+                        app.showAlert(I18n.t('modal.import_done'), `${I18n.t('dashboard.import_all_done')}: ${subjects.length}`);
+                    } catch (err) {
+                        app.showAlert(I18n.t('modal.import_error'), I18n.t('modal.import_json_error'));
+                    }
+                };
+                reader.readAsText(file);
+                input.value = '';
+            },
+
+            duplicateSubject: (id) => {
+                const subject = AppState.data.subjects.find(s => s.id === id);
+                if (!subject) return;
+                const duplicate = app.cloneSubjectData(subject, app.getUniqueSubjectName(subject.name));
+                AppState.data.subjects.push(duplicate);
+                app.saveToStorage();
+                app.renderDashboard();
+                app.announceStatus(I18n.t('dashboard.duplicate_done'));
             },
 
             createSubject: () => {
@@ -995,6 +1232,17 @@
                 AppState.data.subjects.push(newSub);
                 app.saveToStorage();
                 app.openSubject(newSub.id);
+            },
+
+            duplicateCurrentSubject: () => {
+                if (!AppState.currentSubjectId) return;
+                const subject = AppState.data.subjects.find(s => s.id === AppState.currentSubjectId);
+                if (!subject) return;
+                const duplicate = app.cloneSubjectData(subject, app.getUniqueSubjectName(subject.name));
+                AppState.data.subjects.push(duplicate);
+                app.saveToStorage();
+                app.openSubject(duplicate.id);
+                app.announceStatus(I18n.t('dashboard.duplicate_done'));
             },
 
             /* --- DETAIL LOGIC --- */
@@ -1531,6 +1779,21 @@
                 return { scheduleMap, finished: itemIndex >= items.length, lastDate: currentDate, unitRanges, activityRanges };
             },
 
+            getScheduleWarnings: (subject, calculation) => {
+                const warnings = [];
+                const weeklyCapacity = [1, 2, 3, 4, 5].reduce((sum, day) => sum + (parseInt(subject.schedule?.[day]) || 0), 0);
+                const plannedSessions = app.getSchedulableItems(subject).reduce((sum, item) => sum + (parseInt(item.totalSessions) || 0), 0);
+                const localHolidays = new Set(subject.localHolidays || []);
+
+                if (!subject.units || subject.units.length === 0) warnings.push(I18n.t('modal.warning_no_units'));
+                if (weeklyCapacity === 0) warnings.push(I18n.t('modal.warning_no_schedule'));
+                if (!calculation.finished) warnings.push(`${I18n.t('modal.warning_cut')}: ${Utils.formatDate(calculation.lastDate)}`);
+                if (weeklyCapacity > 0 && plannedSessions > weeklyCapacity * 40) warnings.push(I18n.t('modal.warning_dense_plan'));
+                if (localHolidays.size >= 15) warnings.push(I18n.t('modal.warning_many_holidays'));
+
+                return warnings;
+            },
+
             renderCalendar: (subject) => {
                 const { scheduleMap, finished, lastDate, activityRanges } = app.calculateCalendar(subject);
                 const grid = document.getElementById('calendar-grid');
@@ -1540,10 +1803,13 @@
                 else grid.classList.remove('holiday-mode');
 
                 const alerts = document.getElementById('calendar-alerts');
-                if (!finished) {
-                    alerts.innerHTML = `⚠️ <b>${I18n.t('modal.warning')}:</b> ${I18n.t('modal.warning_cut')}: ${Utils.formatDate(lastDate)}`;
+                const warnings = app.getScheduleWarnings(subject, { scheduleMap, finished, lastDate, activityRanges });
+                if (warnings.length > 0) {
+                    alerts.innerHTML = `<strong>${I18n.t('modal.warning')}:</strong><ul class="calendar-warning-list">${warnings.map(message => `<li>${message}</li>`).join('')}</ul>`;
+                    alerts.setAttribute('role', 'alert');
                     alerts.classList.remove('hidden');
                 } else {
+                    alerts.removeAttribute('role');
                     alerts.classList.add('hidden');
                 }
 
@@ -1911,6 +2177,45 @@
                 win.document.close();
             },
 
+            exportPdfSummary: (subjectId = AppState.currentSubjectId) => {
+                if (subjectId !== AppState.currentSubjectId) {
+                    const previousSubjectId = AppState.currentSubjectId;
+                    AppState.currentSubjectId = subjectId;
+                    app.printSummary();
+                    AppState.currentSubjectId = previousSubjectId;
+                    return;
+                }
+                app.printSummary();
+            },
+
+            normalizeImportedSubject: (json) => {
+                if (!json || !Array.isArray(json.units)) {
+                    return null;
+                }
+
+                const clone = JSON.parse(JSON.stringify(json));
+                clone.id = Utils.uuid();
+                clone.name = app.getUniqueSubjectName(clone.name || I18n.t('dashboard.default_subject_name'));
+                clone.color = clone.color || '#3498db';
+                clone.startDate = clone.startDate || '2025-09-08';
+                clone.schedule = clone.schedule || { 1: 1, 2: 1, 3: 1, 4: 1, 5: 1 };
+                clone.planningMode = clone.planningMode || 'unit';
+                clone.localHolidays = Array.isArray(clone.localHolidays) ? clone.localHolidays : [];
+                clone.units = clone.units.map((unit, index) => ({
+                    id: Utils.uuid(),
+                    name: unit.name || `${I18n.t('detail.default_unit_name')} ${index + 1}`,
+                    base: parseInt(unit.base) || 0,
+                    extra: parseInt(unit.extra) || 0,
+                    activities: Array.isArray(unit.activities) ? unit.activities.map((activity) => ({
+                        id: Utils.uuid(),
+                        name: activity.name || '',
+                        sessions: parseInt(activity.sessions) || 0,
+                        extra: parseInt(activity.extra) || 0
+                    })) : []
+                }));
+                return clone;
+            },
+
             importSubject: () => {
                 document.getElementById('file-import').click();
             },
@@ -1922,30 +2227,19 @@
                 reader.onload = (e) => {
                     try {
                         const json = JSON.parse(e.target.result);
+                        const normalized = app.normalizeImportedSubject(json);
 
-                        if (!json.id || !json.units) {
-                            app.showAlert('Error', 'El archivo no parece ser una asignatura válida (faltan campos obligatorios).');
+                        if (!normalized) {
+                            app.showAlert(I18n.t('modal.import_error'), I18n.t('modal.import_subject_invalid'));
                             return;
                         }
 
-                        // Check for name collision
-                        let newName = json.name;
-                        let counter = 1;
-                        while (AppState.data.subjects.some(s => s.name === newName)) {
-                            newName = `${json.name} (Copia ${counter})`;
-                            counter++;
-                        }
-                        json.name = newName;
-
-                        // Always generate new ID to avoid internal collisions, but keep structure
-                        json.id = Utils.uuid();
-
-                        AppState.data.subjects.push(json);
+                        AppState.data.subjects.push(normalized);
                         app.saveToStorage();
                         app.renderDashboard();
-                        app.showAlert('Importación Exitosa', `La asignatura se ha importado como "${json.name}".`);
+                        app.showAlert(I18n.t('modal.import_done'), `${I18n.t('modal.import_subject_done')}: "${normalized.name}".`);
                     } catch (err) {
-                        app.showAlert('Error', 'No se pudo leer el archivo JSON. Verifica el formato.');
+                        app.showAlert(I18n.t('modal.import_error'), I18n.t('modal.import_json_error'));
                     }
                 };
                 reader.readAsText(file);

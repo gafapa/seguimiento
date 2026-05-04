@@ -20,6 +20,12 @@ const I18n = {
         I18n.apply();
 
         if (app) {
+            if (typeof app.updateInstallButtons === 'function') {
+                app.updateInstallButtons();
+            }
+            if (AppState.currentView === 'help' && typeof app.openHelp === 'function') {
+                app.openHelp(AppState.helpReturnView || 'dashboard');
+            }
             if (!document.getElementById('view-dashboard').classList.contains('hidden')) {
                 app.renderDashboard();
             }
