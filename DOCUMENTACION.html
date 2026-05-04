@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>&#x1f4da; Planificador Portable</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="-planificador-portable">📚 Planificador Portable</h1>
+<h2 id="guía-de-usuario">Guía de Usuario</h2>
+<hr>
+<h2 id="-qué-es-el-planificador-portable">🎯 ¿Qué es el Planificador Portable?</h2>
+<p>Imagina poder ver todo tu curso escolar en un vistazo. Saber exactamente qué día empiezas el tema de ecuaciones, cuándo terminas geometría, y tener la tranquilidad de que todo cabe en el tiempo disponible.</p>
+<p>El <strong>Planificador Portable</strong> hace exactamente eso. Es una herramienta pensada para docentes que quieren:</p>
+<ul>
+<li><strong>Visualizar</strong> su planificación anual en un calendario claro</li>
+<li><strong>Calcular automáticamente</strong> qué fechas corresponden a cada unidad</li>
+<li><strong>Ajustar sobre la marcha</strong> cuando cambian los planes</li>
+<li><strong>Tener en cuenta</strong> festivos y días sin clase</li>
+</ul>
+<p>Lo mejor: funciona directamente en tu navegador, sin instalaciones, y tus datos se guardan automáticamente.</p>
+<hr>
+<h2 id="-primeros-pasos">🚀 Primeros pasos</h2>
+<h3 id="crear-tu-primera-asignatura">Crear tu primera asignatura</h3>
+<ol>
+<li>Abre la aplicación en tu navegador</li>
+<li>Verás la pantalla <strong>&quot;Mis Asignaturas&quot;</strong> con tus planificaciones (vacía si es la primera vez)</li>
+<li>Haz clic en el botón púrpura <strong>&quot;+ Nueva Asignatura&quot;</strong></li>
+</ol>
+<p>¡Ya está! Se ha creado una asignatura nueva con valores de ejemplo. Ahora vamos a personalizarla.</p>
+<h3 id="configurar-los-datos-básicos">Configurar los datos básicos</h3>
+<p>Al entrar en tu asignatura, verás un panel a la izquierda con la configuración:</p>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Qué poner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Nombre</strong></td>
+<td>El nombre de tu asignatura (ej: &quot;Matemáticas 3º ESO&quot;)</td>
+</tr>
+<tr>
+<td><strong>Fecha Inicio Curso</strong></td>
+<td>El primer día de clase (ej: 08/09/2025)</td>
+</tr>
+<tr>
+<td><strong>Modo Planificación</strong></td>
+<td>&quot;Por Unidades&quot; para empezar (lo explicamos más adelante)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="configurar-tu-horario-semanal">Configurar tu horario semanal</h3>
+<p>Aquí indicas cuántas sesiones de esta asignatura tienes cada día de la semana:</p>
+<pre><code>Lunes:     2 sesiones
+Martes:    1 sesión  
+Miércoles: 0 sesiones (no tengo clase este día)
+Jueves:    2 sesiones
+Viernes:   1 sesión
+</code></pre>
+<p>El planificador usará esta información para distribuir tu contenido solo en los días que realmente tienes clase.</p>
+<hr>
+<h2 id="-trabajando-con-unidades-didácticas">📖 Trabajando con Unidades Didácticas</h2>
+<h3 id="añadir-unidades">Añadir unidades</h3>
+<ol>
+<li>En el panel izquierdo, verás la sección <strong>&quot;Unidades Didácticas&quot;</strong></li>
+<li>Ya tienes una unidad de ejemplo (&quot;Unidad 1&quot;)</li>
+<li>Para añadir más, pulsa <strong>&quot;+ Añadir Unidad&quot;</strong> en la parte inferior</li>
+</ol>
+<h3 id="configurar-cada-unidad">Configurar cada unidad</h3>
+<p>Cada unidad tiene dos campos:</p>
+<ul>
+<li><strong>Sesiones Base</strong>: El número de clases que necesitas para dar el contenido principal</li>
+<li><strong>Extra</strong>: Sesiones adicionales para refuerzo, ampliación o imprevistos</li>
+</ul>
+<p><strong>Ejemplo práctico:</strong></p>
+<ul>
+<li>Tienes 3 horas semanales de Matemáticas</li>
+<li>La Unidad 1 (Números enteros) necesita unas 15 sesiones base</li>
+<li>Añades 3 sesiones extra por si necesitas repasar</li>
+</ul>
+<p>El calendario de la derecha se actualiza al instante, mostrándote que la Unidad 1 ocupará aproximadamente 6 semanas.</p>
+<h3 id="el-calendario-visual">El calendario visual</h3>
+<p>A la derecha de la pantalla verás un calendario con los meses del curso (septiembre a junio). Cada celda del calendario muestra:</p>
+<ul>
+<li><strong>El número del día</strong></li>
+<li><strong>El nombre de la unidad</strong> que toca ese día</li>
+<li><strong>El color de la unidad</strong> para identificarla visualmente</li>
+<li><strong>Cuántas sesiones</strong> hay ese día</li>
+</ul>
+<p>Si un día tiene varias sesiones y se reparten entre dos unidades, verás un degradado de colores.</p>
+<hr>
+<h2 id="️-gestión-de-festivos">🗓️ Gestión de Festivos</h2>
+<p>Los festivos son importantes porque afectan a tu planificación. Si tienes un puente en octubre, no querrás que el sistema cuente ese día como lectivo.</p>
+<h3 id="marcar-festivos-manualmente">Marcar festivos manualmente</h3>
+<ol>
+<li>Pulsa el botón <strong>&quot;✏️ Festivos&quot;</strong> en la barra superior</li>
+<li>El botón se pondrá púrpura indicando que estás en modo edición</li>
+<li>Haz clic en cualquier día del calendario para marcarlo como festivo</li>
+<li>Haz clic de nuevo para desmarcarlo</li>
+<li>Cuando termines, pulsa <strong>&quot;✅ Fin Selección&quot;</strong></li>
+</ol>
+<p>Los días festivos aparecerán con un borde discontinuo y la palabra &quot;Festivo&quot;.</p>
+<h3 id="compartir-festivos-entre-asignaturas">Compartir festivos entre asignaturas</h3>
+<p>¿Tienes 5 asignaturas y no quieres marcar los festivos 5 veces? Usa la función de exportar/importar:</p>
+<ol>
+<li>En la primera asignatura, marca todos los festivos</li>
+<li>Pulsa <strong>&quot;⬇️ Festivos&quot;</strong> para descargar un archivo JSON</li>
+<li>En las demás asignaturas, pulsa <strong>&quot;⬆️ Festivos&quot;</strong> y selecciona ese archivo</li>
+<li>¡Todos los festivos se importan automáticamente!</li>
+</ol>
+<blockquote>
+<p>💡 <strong>Consejo</strong>: Crea un archivo de festivos al inicio de curso y úsalo en todas tus asignaturas.</p>
+</blockquote>
+<hr>
+<h2 id="-dos-modos-de-planificación">📊 Dos modos de planificación</h2>
+<p>El Planificador ofrece dos niveles de detalle según tus necesidades.</p>
+<h3 id="modo-por-unidades-simple">Modo &quot;Por Unidades&quot; (Simple)</h3>
+<p>Este es el modo por defecto. Defines cuántas sesiones tiene cada unidad y listo.</p>
+<p><strong>Ideal para:</strong></p>
+<ul>
+<li>Planificación general a principio de curso</li>
+<li>Asignaturas donde no necesitas desglosar por actividades</li>
+<li>Tener una visión rápida del curso</li>
+</ul>
+<h3 id="modo-por-actividades-detallado">Modo &quot;Por Actividades&quot; (Detallado)</h3>
+<p>En este modo, cada unidad se divide en actividades individuales. Por ejemplo:</p>
+<pre><code>Unidad 1: Números enteros
+├── Actividad 1.1: Introducción (3 sesiones)
+├── Actividad 1.2: Operaciones básicas (5 sesiones)
+├── Actividad 1.3: Problemas aplicados (4 sesiones)
+└── Actividad 1.4: Evaluación (2 sesiones)
+</code></pre>
+<p><strong>Ideal para:</strong></p>
+<ul>
+<li>Programaciones detalladas</li>
+<li>Cuando necesitas saber exactamente qué día haces cada actividad</li>
+<li>Memorias o documentación oficial</li>
+</ul>
+<h3 id="cambiar-de-modo">Cambiar de modo</h3>
+<p>Puedes cambiar de modo en el desplegable &quot;Modo Planificación&quot;:</p>
+<ul>
+<li><strong>De Unidades a Actividades</strong>: Se crea una única actividad por unidad con todas las sesiones</li>
+<li><strong>De Actividades a Unidades</strong>: Se suman todas las actividades y se pierden los detalles individuales</li>
+</ul>
+<blockquote>
+<p>⚠️ <strong>Cuidado</strong>: Al pasar de Actividades a Unidades, perderás el desglose de actividades.</p>
+</blockquote>
+<hr>
+<h2 id="️-imprimir-y-compartir">🖨️ Imprimir y compartir</h2>
+<h3 id="generar-un-resumen-imprimible">Generar un resumen imprimible</h3>
+<ol>
+<li>Pulsa <strong>&quot;🖨️ Resumen&quot;</strong> en la barra superior</li>
+<li>Se abre una nueva pestaña con una tabla bien formateada</li>
+<li>Incluye: nombre de cada unidad/actividad, sesiones (base + extra), y fechas</li>
+<li>Se lanza automáticamente el diálogo de impresión</li>
+</ol>
+<p>Este resumen es perfecto para:</p>
+<ul>
+<li>Incluir en tu programación didáctica</li>
+<li>Entregar a jefatura de estudios</li>
+<li>Tener un documento de referencia en papel</li>
+</ul>
+<h3 id="exportar-tu-planificación-completa">Exportar tu planificación completa</h3>
+<p>Desde el Dashboard (pantalla principal), cada asignatura tiene un botón <strong>&quot;⬇️ Exportar JSON&quot;</strong>. Este archivo contiene:</p>
+<ul>
+<li>Toda la configuración de la asignatura</li>
+<li>Todas las unidades y actividades</li>
+<li>Los festivos marcados</li>
+<li>El horario semanal</li>
+</ul>
+<p>Puedes usar este archivo para:</p>
+<ul>
+<li>Hacer copias de seguridad</li>
+<li>Compartir con otros profesores</li>
+<li>Pasar la planificación a otro ordenador</li>
+</ul>
+<h3 id="importar-una-planificación">Importar una planificación</h3>
+<ol>
+<li>En el Dashboard, pulsa <strong>&quot;Importar Asignatura&quot;</strong></li>
+<li>Selecciona un archivo JSON exportado previamente</li>
+<li>Si ya existe una asignatura con el mismo nombre, se creará como &quot;Nombre (Copia)&quot;</li>
+</ol>
+<hr>
+<h2 id="-cambiar-el-idioma">🌍 Cambiar el idioma</h2>
+<p>La aplicación está disponible en:</p>
+<table>
+<thead>
+<tr>
+<th>Idioma</th>
+<th>Seleccionar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🇪🇸 Español</td>
+<td>ES</td>
+</tr>
+<tr>
+<td>🌐 Galego</td>
+<td>GL</td>
+</tr>
+<tr>
+<td>🏴 Català</td>
+<td>CA</td>
+</tr>
+<tr>
+<td>🟢 Euskara</td>
+<td>EU</td>
+</tr>
+</tbody>
+</table>
+<p>El selector de idioma está en la esquina superior derecha de la pantalla principal. Tu preferencia se guarda automáticamente.</p>
+<hr>
+<h2 id="-preguntas-frecuentes">❓ Preguntas frecuentes</h2>
+<h3 id="se-guardan-mis-datos">¿Se guardan mis datos?</h3>
+<p>Sí, automáticamente. Todo se almacena en tu navegador. No necesitas pulsar ningún botón de guardar.</p>
+<h3 id="qué-pasa-si-uso-otro-navegador-u-ordenador">¿Qué pasa si uso otro navegador u ordenador?</h3>
+<p>Los datos están en el navegador que usaste. Para llevarlos a otro sitio, exporta el JSON e impórtalo en el nuevo navegador.</p>
+<h3 id="puedo-usar-esto-en-el-móvil">¿Puedo usar esto en el móvil?</h3>
+<p>Sí, aunque la experiencia es mucho mejor en una pantalla grande donde puedes ver el calendario completo.</p>
+<h3 id="qué-significa-el-aviso-no-hay-tiempo-suficiente">¿Qué significa el aviso &quot;No hay tiempo suficiente&quot;?</h3>
+<p>Significa que el contenido que has planificado no cabe en los días disponibles hasta junio. Tienes dos opciones:</p>
+<ul>
+<li>Reducir el número de sesiones de alguna unidad</li>
+<li>Aumentar las sesiones semanales en tu horario</li>
+</ul>
+<h3 id="puedo-planificar-cursos-que-empiecen-en-enero">¿Puedo planificar cursos que empiecen en enero?</h3>
+<p>Sí, simplemente cambia la fecha de inicio. El calendario ajustará automáticamente qué meses mostrar.</p>
+<h3 id="se-puede-usar-sin-internet">¿Se puede usar sin internet?</h3>
+<p>Sí, una vez abierta la página funciona offline. Solo necesitas internet para abrirla la primera vez.</p>
+<hr>
+<h2 id="-demostración">🎬 Demostración</h2>
+<p>Mira cómo funciona la aplicación en esta animación:</p>
+<p><img src="file:///c:\Users\pablo\Antigravity\Seguimiento\demo_planificador.webp" alt="Demo del Planificador"></p>
+<hr>
+<h2 id="-consejos-para-sacarle-el-máximo-partido">💡 Consejos para sacarle el máximo partido</h2>
+<ol>
+<li>
+<p><strong>Empieza simple</strong>: Usa el modo Unidades al principio. Ya pasarás a Actividades cuando lo necesites.</p>
+</li>
+<li>
+<p><strong>Añade sesiones extra</strong>: Es mejor planificar con margen que quedarte corto.</p>
+</li>
+<li>
+<p><strong>Revisa los avisos</strong>: Si aparece un aviso rojo, tu contenido no cabe en el tiempo disponible.</p>
+</li>
+<li>
+<p><strong>Exporta regularmente</strong>: Haz copias de seguridad de tus planificaciones por si acaso.</p>
+</li>
+<li>
+<p><strong>Comparte los festivos</strong>: Crea un archivo de festivos común para todo el departamento.</p>
+</li>
+</ol>
+<hr>
+<p><em>¡Planifica tu curso en minutos, no en horas!</em> 🎯</p>
+<hr>
+<p><em>Planificador Portable v1.0 - Herramienta para docentes</em></p>
+
+            
+            
+        </body>
+        </html>
