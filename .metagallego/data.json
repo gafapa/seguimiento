@@ -1,6 +1,6 @@
 {
   "_info": "This file is read by metagallego. Fill in title, description and techStack to document your project. The _info field is ignored.",
   "title": "CourseMap Planner",
-  "description": "A portable browser-based course planning tool for teachers that schedules units and activities across the school calendar, accounts for holidays, and stores data locally for offline use.",
+  "description": "A browser-based teaching planner for teachers that schedules subjects, units, and activities across the school calendar, supports multiple languages, works as an installable PWA, and stores data locally for offline-friendly use.",
   "techStack": ["JavaScript", "HTML", "CSS", "LocalStorage", "Node.js"]
 }
